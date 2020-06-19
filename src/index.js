@@ -2,17 +2,16 @@ import './index.css';
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { render } from '@testing-library/react';
 
 const SecondsCounter = () => {
-    const [seconds, setSeconds] = useState(0);
-  
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setSeconds(seconds => seconds + 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    }, []);
-  
+  constructor(){
+    super()
+    this.state = {contador : 1}
+    setInterval(() => { this.setstate({this.state.contador + 1}), 1000 })
+  }
+}
+  render(){
     return (
         <div className="text-center mt-5">
         <div className="container d-flex justify-content-between">
@@ -20,12 +19,13 @@ const SecondsCounter = () => {
                 <i className="far fa-clock" />
             </p>
             <p id="time" className="h1 mr-2 text-light">
-                {seconds}
+                {this.state.contador}
             </p>
         </div>
  </div>
     );
-  };
+   }
+  
   
 ReactDOM.render(<SecondsCounter />, document.querySelector('#root'));
 
